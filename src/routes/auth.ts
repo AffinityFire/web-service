@@ -7,7 +7,7 @@ import {
 import type { Router } from "@oak/oak";
 import type { AppState } from "../mod.ts";
 import { requireAuth, requireAuthPage } from "../auth/guards.ts";
-import { AccountInfo } from "@azure/msal-node";
+import type { AccountInfo } from "@azure/msal-node";
 
 export function buildAuthRouter(router: Router<AppState>) {
   router.get(
