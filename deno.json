@@ -1,0 +1,33 @@
+{
+  "name": "@affinity-fire/web-service",
+  "version": "0.1.0",
+  "license": "UNLICENSED",
+  "exports": "./mod.ts",
+  "tasks": {
+    "dev": "deno serve --port 3000 --allow-net --allow-read --allow-env --allow-sys --watch main.ts",
+    "start": "deno run --allow-net --allow-read --allow-env --allow-sys main.ts",
+    "check": "deno check main.ts"
+  },
+  "imports": {
+    "@affinity-fire/oak-sessions": "jsr:@affinity-fire/oak-sessions@^9.0.0",
+    "@azure/msal-node": "npm:@azure/msal-node@^5.2.5",
+    "@db/postgres": "jsr:@db/postgres@^0.19.5",
+    "@oak/oak": "jsr:@oak/oak@^17.2.0",
+    "@std/path": "jsr:@std/path@^1.1.5",
+    "axios": "npm:axios@^1.18.0",
+    "cookie-parser": "npm:cookie-parser@^1.4.7",
+    "dotenv": "npm:dotenv@^17.4.2",
+    "express": "npm:express@^5.2.1",
+    "express-session": "npm:express-session@^1.19.0",
+    "http-errors": "npm:http-errors@^2.0.1",
+    "morgan": "npm:morgan@^1.11.0"
+  },
+  "compilerOptions": {
+    "erasableSyntaxOnly": true
+  },
+  "lint": {
+    "rules": {
+      "exclude": ["require-await"]
+    }
+  }
+}
