@@ -1,8 +1,8 @@
 {
   "name": "@affinity-fire/web-service",
   "version": "0.1.0",
-  "license": "UNLICENSED",
-  "exports": "./mod.ts",
+  "license": "GPL-3.0-only",
+  "exports": "./src/mod.ts",
   "tasks": {
     "dev": "deno serve --port 3000 --allow-net --allow-read --allow-env --allow-sys --watch main.ts",
     "start": "deno run --allow-net --allow-read --allow-env --allow-sys main.ts",
