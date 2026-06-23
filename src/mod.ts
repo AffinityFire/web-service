@@ -27,7 +27,7 @@ export type AffAppState = AppState & { db?: AppDbConn };
 
 export async function newApp<AS extends AppState>(
   appDir: string,
-  appMod: (router: Router<AS>) => Promise<void>,
+  appMod: (apiRouter: Router<AS>, publicRouter: Router<AS>) => Promise<void>,
   opts?: { databaseUrl?: string; appName?: string },
 ): Promise<Application<AppState>> {
   let store;
@@ -43,12 +43,17 @@ export async function newApp<AS extends AppState>(
   router.use(authMiddleware);
   const apiRouter = new Router({ "prefix": "/api" });
   apiRouter.use(requireAuth);
+  const publicRouter = new Router({ "prefix": "/public" });
   if (opts?.databaseUrl) {
-    apiRouter.use(
-      dbMiddleware(opts?.databaseUrl, opts?.appName ?? "Affinity App"),
+    const dbMw = dbMiddleware(
+      opts?.databaseUrl,
+      opts?.appName ?? "Affinity App",
     );
+    apiRouter.use(dbMw);
+    publicRouter.use(dbMw);
   }
-  appMod(apiRouter);
+
+  appMod(apiRouter, publicRouter);
   const app = new Application<AppState>();
   app.use(timerMiddleware);
   app.use(appStaticMiddleware(appDir));
