@@ -126,8 +126,6 @@ export function dbMiddleware(databaseUrl: string, appName: string) {
     ctx: Context<{ db?: AppDbConn }>,
     next: () => Promise<unknown>,
   ) => {
-    // all routes not in /public get a db connection, TODO make this narrower still
-    if (ctx.request.url.pathname.startsWith("/public/")) return await next();
     try {
       ctx.state.db = await appDbConnect(databaseUrl, appName);
       return await next();
