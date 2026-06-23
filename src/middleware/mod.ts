@@ -31,7 +31,7 @@ export function appStaticMiddleware(appDir: string) {
     const pathname = ctx.request.url.pathname;
     if (
       pathname.startsWith("/api/") || pathname.startsWith("/auth/") ||
-      pathname.startsWith("/login")
+      pathname.startsWith("/login") || pathname.startsWith("/public/")
     ) {
       return await next();
     }
