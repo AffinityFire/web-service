@@ -62,5 +62,7 @@ export async function newApp<AS extends AppState>(
   app.use(router.allowedMethods());
   app.use(apiRouter.routes());
   app.use(apiRouter.allowedMethods());
+  app.use(publicRouter.routes());
+  app.use(publicRouter.allowedMethods());
   return app;
 }
